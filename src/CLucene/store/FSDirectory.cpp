@@ -4,7 +4,7 @@
  * Distributable under the terms of either the Apache License (Version 2.0) or 
  * the GNU Lesser General Public License, as specified in the COPYING file.
  *
- * Changes are Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+ * Changes are Copyright (C) 2015 The Qt Company Ltd.
 */
 #include <QtCore/QDir>
 #include <QtCore/QDateTime>
@@ -511,14 +511,14 @@ int64_t FSDirectory::fileModified(const QString& name) const
     CND_PRECONDITION(!directory.isEmpty(), "directory is not open");
 
     QFileInfo fInfo(directory + QDir::separator() + name);
-    return fInfo.lastModified().toTime_t();
+    return fInfo.lastModified().toSecsSinceEpoch();
 }
 
 //static
 int64_t FSDirectory::fileModified(const QString& dir, const QString& name)
 {
     QFileInfo fInfo(dir + QDir::separator() + name);
-    return fInfo.lastModified().toTime_t();
+    return fInfo.lastModified().toSecsSinceEpoch();
 }
 
 void FSDirectory::touchFile(const QString& name)
